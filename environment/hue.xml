@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dhc:dogHomeConfiguration xmlns:dhc="http://elite.polito.it/dogHomeConfiguration">
+    <dhc:buildingEnvironment>
+        <dhc:building id="Case">
+            <dhc:flat id="ZWAVE_Demo" class="Flat">
+                <dhc:room id="demo_room" class="StorageRoom">
+                    <dhc:ceiling id="ceiling" class="Ceiling"/>
+                    <dhc:floor id="floor" class="Floor"/>
+                    <dhc:wall id="wall" class="Wall"/>
+                </dhc:room>
+            </dhc:flat>
+        </dhc:building>
+    </dhc:buildingEnvironment>
+    <dhc:controllables>
+        <dhc:device class="HueBridge" id="hue_bridge" domoticSystem="PhilipsHue">
+            <dhc:description>The emulated Hue bridge
+			</dhc:description>
+            <dhc:isIn>demo_room</dhc:isIn>
+            <dhc:param name="localId" value="1" type="network"/>
+            <dhc:param name="IPAddress" value="127.0.0.1:8000" type="network"/>
+            <dhc:controlFunctionality class="PushLinkFunctionality">
+                <dhc:commands>
+                    <dhc:command class="StartPushLinkAuthenticationCommand" name="StartPushLinkAuthenticationCommand_hue_bridge" id="StartPushLinkAuthenticationCommand_hue_bridge">
+                        <dhc:param name="realCommandName" value="startPushLinkAuth"/>
+                    </dhc:command>
+                    <dhc:command class="StopPushLinkAuthenticationCommand" name="StopPushLinkAuthenticationCommand_hue_bridge" id="StopPushLinkAuthenticationCommand_hue_bridge">
+                        <dhc:param name="realCommandName" value="stopPushLinkAuth"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:notificationFunctionality class="PushLinkNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="PushLinkAuthenticationActiveNotification" id="PushLinkAuthenticationActiveNotification_hue_bridge">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="activatedPushLinkAuth"/>
+                    </dhc:notification>
+                    <dhc:notification class="OffNotification" id="PushLinkAuthenticationIdleNotificatio_hue_bridge">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="deactivatedPushLinkAuth"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:state class="ConnectionState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="ConnectedStateValue" name="connected"/>
+                    <dhc:statevalue class="DisconnectedStateValue" name="disconnected"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="PushLinkAuthenticationState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="ActivePushLinkAuthenticationStateValue" name="authenticating"/>
+                    <dhc:statevalue class="AuthenticatedStateValue" name="authenticated"/>
+                    <dhc:statevalue class="NeedingAuthenticationStateValue" name="needsAuthentication"/>
+                </dhc:statevalues>
+            </dhc:state>
+        </dhc:device>
+        <dhc:device class="ColorDimmableLight" id="hue_bridge_ColorDimmableLight_3" domoticSystem="PhilipsHue" gateway="hue_bridge">
+            <dhc:description>New Device of type ColorDimmableLight</dhc:description>
+            <dhc:isIn></dhc:isIn>
+            <dhc:param name="localId" value="3" type="network"/>
+            <dhc:controlFunctionality class="OnOffFunctionality">
+                <dhc:commands>
+                    <dhc:command class="OffCommand" name="OffCommand_hue_bridge_ColorDimmableLight_3" id="OffCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="off"/>
+                    </dhc:command>
+                    <dhc:command class="OnCommand" name="OnCommand_hue_bridge_ColorDimmableLight_3" id="OnCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="on"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="LevelControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetCommand" name="OffCommand_hue_bridge_ColorDimmableLight_3" id="SetCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="set"/>
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="commandParamName" value="value" type="Object"/>
+                    </dhc:command>
+                    <dhc:command class="StepUpCommand" name="OnCommand_hue_bridge_ColorDimmableLight_3" id="StepUpCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="stepUp"/>
+                    </dhc:command>
+                    <dhc:command class="StepDownCommand" name="OnCommand_hue_bridge_ColorDimmableLight_3" id="StepDownCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="stepDown"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="ColorControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetColorHSBCommand" name="SetColorHSBCommand_hue_bridge_ColorDimmableLight_3" id="SetColorHSBCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="setColorHSB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="hue" type="Integer"/>
+                        <dhc:param name="commandParamName" value="saturation" type="Integer"/>
+                        <dhc:param name="commandParamName" value="brightness" type="Integer"/>
+                    </dhc:command>
+                    <dhc:command class="SetColorRGBCommand" name="SetColorRGBCommand_hue_bridge_ColorDimmableLight_3" id="SetColorRGBCommand_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="realCommandName" value="setColorRGB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="red" type="Integer"/>
+                        <dhc:param name="commandParamName" value="green" type="Integer"/>
+                        <dhc:param name="commandParamName" value="blue" type="Integer"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:notificationFunctionality class="OnOffNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="OnNotification" id="OnNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="on"/>
+                    </dhc:notification>
+                    <dhc:notification class="OffNotification" id="OffNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="off"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="SimpleLevelNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="LevelControlNotification" id="LevelControlNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedLevel"/>
+                        <dhc:param name="notificationParamName" value="newLevel" type="Measure"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepUpNotification" id="LevelStepUpNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepUp"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepDownNotification" id="LevelStepDownNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepDown"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="ColorNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="ColorNotification" id="ColorNotification_hue_bridge_ColorDimmableLight_3">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedColor"/>
+                        <dhc:param name="notificationParamName" value="colorRGB" type="String"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:state class="OnOffState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="OffStateValue" name="off"/>
+                    <dhc:statevalue class="OnStateValue" name="on"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="LevelState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="LevelStateValue" name="level"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="ColorStateHSB">
+                <dhc:statevalues>
+                    <dhc:statevalue class="BrightnessStateValue" name="color"/>
+                    <dhc:statevalue class="HueStateValue" name="color"/>
+                    <dhc:statevalue class="SaturationStateValue" name="color"/>
+                </dhc:statevalues>
+            </dhc:state>
+        </dhc:device>
+        <dhc:device class="ColorDimmableLight" id="hue_bridge_ColorDimmableLight_2" domoticSystem="PhilipsHue" gateway="hue_bridge">
+            <dhc:description>New Device of type ColorDimmableLight</dhc:description>
+            <dhc:isIn></dhc:isIn>
+            <dhc:param name="localId" value="2" type="network"/>
+            <dhc:controlFunctionality class="OnOffFunctionality">
+                <dhc:commands>
+                    <dhc:command class="OffCommand" name="OffCommand_hue_bridge_ColorDimmableLight_2" id="OffCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="off"/>
+                    </dhc:command>
+                    <dhc:command class="OnCommand" name="OnCommand_hue_bridge_ColorDimmableLight_2" id="OnCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="on"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="LevelControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetCommand" name="OffCommand_hue_bridge_ColorDimmableLight_2" id="SetCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="set"/>
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="commandParamName" value="value" type="Object"/>
+                    </dhc:command>
+                    <dhc:command class="StepUpCommand" name="OnCommand_hue_bridge_ColorDimmableLight_2" id="StepUpCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="stepUp"/>
+                    </dhc:command>
+                    <dhc:command class="StepDownCommand" name="OnCommand_hue_bridge_ColorDimmableLight_2" id="StepDownCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="stepDown"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="ColorControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetColorHSBCommand" name="SetColorHSBCommand_hue_bridge_ColorDimmableLight_2" id="SetColorHSBCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="setColorHSB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="hue" type="Integer"/>
+                        <dhc:param name="commandParamName" value="saturation" type="Integer"/>
+                        <dhc:param name="commandParamName" value="brightness" type="Integer"/>
+                    </dhc:command>
+                    <dhc:command class="SetColorRGBCommand" name="SetColorRGBCommand_hue_bridge_ColorDimmableLight_2" id="SetColorRGBCommand_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="realCommandName" value="setColorRGB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="red" type="Integer"/>
+                        <dhc:param name="commandParamName" value="green" type="Integer"/>
+                        <dhc:param name="commandParamName" value="blue" type="Integer"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:notificationFunctionality class="OnOffNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="OnNotification" id="OnNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="on"/>
+                    </dhc:notification>
+                    <dhc:notification class="OffNotification" id="OffNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="off"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="SimpleLevelNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="LevelControlNotification" id="LevelControlNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedLevel"/>
+                        <dhc:param name="notificationParamName" value="newLevel" type="Measure"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepUpNotification" id="LevelStepUpNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepUp"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepDownNotification" id="LevelStepDownNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepDown"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="ColorNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="ColorNotification" id="ColorNotification_hue_bridge_ColorDimmableLight_2">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedColor"/>
+                        <dhc:param name="notificationParamName" value="colorRGB" type="String"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:state class="OnOffState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="OffStateValue" name="off"/>
+                    <dhc:statevalue class="OnStateValue" name="on"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="LevelState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="LevelStateValue" name="level"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="ColorStateHSB">
+                <dhc:statevalues>
+                    <dhc:statevalue class="BrightnessStateValue" name="color"/>
+                    <dhc:statevalue class="HueStateValue" name="color"/>
+                    <dhc:statevalue class="SaturationStateValue" name="color"/>
+                </dhc:statevalues>
+            </dhc:state>
+        </dhc:device>
+        <dhc:device class="ColorDimmableLight" id="hue_bridge_ColorDimmableLight_1" domoticSystem="PhilipsHue" gateway="hue_bridge">
+            <dhc:description>New Device of type ColorDimmableLight</dhc:description>
+            <dhc:isIn></dhc:isIn>
+            <dhc:param name="localId" value="1" type="network"/>
+            <dhc:controlFunctionality class="OnOffFunctionality">
+                <dhc:commands>
+                    <dhc:command class="OffCommand" name="OffCommand_hue_bridge_ColorDimmableLight_1" id="OffCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="off"/>
+                    </dhc:command>
+                    <dhc:command class="OnCommand" name="OnCommand_hue_bridge_ColorDimmableLight_1" id="OnCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="on"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="LevelControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetCommand" name="OffCommand_hue_bridge_ColorDimmableLight_1" id="SetCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="set"/>
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="commandParamName" value="value" type="Object"/>
+                    </dhc:command>
+                    <dhc:command class="StepUpCommand" name="OnCommand_hue_bridge_ColorDimmableLight_1" id="StepUpCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="stepUp"/>
+                    </dhc:command>
+                    <dhc:command class="StepDownCommand" name="OnCommand_hue_bridge_ColorDimmableLight_1" id="StepDownCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="stepDown"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:controlFunctionality class="ColorControlFunctionality">
+                <dhc:commands>
+                    <dhc:command class="SetColorHSBCommand" name="SetColorHSBCommand_hue_bridge_ColorDimmableLight_1" id="SetColorHSBCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="setColorHSB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="hue" type="Integer"/>
+                        <dhc:param name="commandParamName" value="saturation" type="Integer"/>
+                        <dhc:param name="commandParamName" value="brightness" type="Integer"/>
+                    </dhc:command>
+                    <dhc:command class="SetColorRGBCommand" name="SetColorRGBCommand_hue_bridge_ColorDimmableLight_1" id="SetColorRGBCommand_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="realCommandName" value="setColorRGB"/>
+                        <dhc:param name="nParams" value="3"/>
+                        <dhc:param name="commandParamName" value="red" type="Integer"/>
+                        <dhc:param name="commandParamName" value="green" type="Integer"/>
+                        <dhc:param name="commandParamName" value="blue" type="Integer"/>
+                    </dhc:command>
+                </dhc:commands>
+            </dhc:controlFunctionality>
+            <dhc:notificationFunctionality class="OnOffNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="OnNotification" id="OnNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="on"/>
+                    </dhc:notification>
+                    <dhc:notification class="OffNotification" id="OffNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="off"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="SimpleLevelNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="LevelControlNotification" id="LevelControlNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedLevel"/>
+                        <dhc:param name="notificationParamName" value="newLevel" type="Measure"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepUpNotification" id="LevelStepUpNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepUp"/>
+                    </dhc:notification>
+                    <dhc:notification class="LevelStepDownNotification" id="LevelStepDownNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="0"/>
+                        <dhc:param name="notificationName" value="stepDown"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:notificationFunctionality class="ColorNotificationFunctionality">
+                <dhc:notifications>
+                    <dhc:notification class="ColorNotification" id="ColorNotification_hue_bridge_ColorDimmableLight_1">
+                        <dhc:param name="nParams" value="1"/>
+                        <dhc:param name="notificationName" value="changedColor"/>
+                        <dhc:param name="notificationParamName" value="colorRGB" type="String"/>
+                    </dhc:notification>
+                </dhc:notifications>
+            </dhc:notificationFunctionality>
+            <dhc:state class="OnOffState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="OffStateValue" name="off"/>
+                    <dhc:statevalue class="OnStateValue" name="on"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="LevelState">
+                <dhc:statevalues>
+                    <dhc:statevalue class="LevelStateValue" name="level"/>
+                </dhc:statevalues>
+            </dhc:state>
+            <dhc:state class="ColorStateHSB">
+                <dhc:statevalues>
+                    <dhc:statevalue class="BrightnessStateValue" name="color"/>
+                    <dhc:statevalue class="HueStateValue" name="color"/>
+                    <dhc:statevalue class="SaturationStateValue" name="color"/>
+                </dhc:statevalues>
+            </dhc:state>
+        </dhc:device>
+    </dhc:controllables>
+</dhc:dogHomeConfiguration>
